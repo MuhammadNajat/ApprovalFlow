@@ -89,7 +89,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1723636550935</updated>
-      <workItem from="1723636551994" duration="1491000" />
+      <workItem from="1723636551994" duration="1817000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized project">
       <created>1723638042588</created>
@@ -98,11 +98,36 @@
       <option name="project" value="LOCAL" />
       <updated>1723638042588</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Initialized project">
+      <created>1723638090663</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1723638090663</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Initialized project">
+      <created>1723638209727</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1723638209727</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initialized project" />
