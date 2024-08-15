@@ -5,9 +5,42 @@ plugins {
 group 'org.example'
 version '1.0-SNAPSHOT'
 
+apply plugin: 'maven-publish'
+
+publishing {
+
+    publications {
+
+        maven(MavenPublication) {
+
+            artifact(
+                    "build/libs/ApprovalFlow-1.0-SNAPSHOT.jar") {
+
+                extension 'jar'
+
+            }
+        }
+    }
+}
+
 repositories {
+
+    maven {
+
+        name 'nexus'
+
+        url "https://sonatype.innovatorslab.net/repository/maven-snapshots/"
+
+        credentials {
+
+            username = 'admin'
+            password = 'j8ayt6dgaf'
+
+        }
+    }
     mavenCentral()
 }
+
 
 jar {
     manifest {
