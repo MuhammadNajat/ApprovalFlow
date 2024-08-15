@@ -11,13 +11,19 @@ repositories {
 
 jar {
     manifest {
-        attributes('Main-Class': 'org.example.Main')
+        attributes('Main-Class': 'com.dsi.Main')
     }
+}
+
+ext {
+    log4jVersion = '2.21.1'
 }
 
 dependencies {
     implementation 'org.json:json:20240303'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+    implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+    implementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'

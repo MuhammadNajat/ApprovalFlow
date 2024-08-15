@@ -1,18 +1,17 @@
-package org.example;
+package com.dsi.dto;
 
 import java.util.List;
 
-class ApprovalStep {
-    private int approverPostId;
+public class ApprovalPathStep {
+    private Approver approver;
     private List<String> allowedActions;
 
-    // Getters and Setters
-    public int getApproverPostId() {
-        return approverPostId;
+    public Approver getApprover() {
+        return approver;
     }
 
-    public void setApproverPostId(int approverPostId) {
-        this.approverPostId = approverPostId;
+    public void setApprover(Approver approver) {
+        this.approver = approver;
     }
 
     public List<String> getAllowedActions() {

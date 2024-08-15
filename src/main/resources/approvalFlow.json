@@ -1,5 +1,5 @@
 {
-  "flows": [
+  "paths": [
     {
       "applicationType": "LEAVE_APPLICATION",
       "steps": [
@@ -22,6 +22,44 @@
           "allowedActions": [
             "APPROVE",
             "RETURN",
+            "REJECT"
+          ]
+        }
+      ]
+    },
+    {
+      "applicationType": "LICENSE_APPROVAL_APPLICATION",
+      "steps": [
+        {
+          "approver": {
+            "type": "POST",
+            "postId": "HR"
+          },
+          "allowedActions": [
+            "FORWARD",
+            "RETURN"
+          ]
+        },
+        {
+          "approver": {
+            "type": "ROLE",
+            "officeLayerId": 22,
+            "role": "PROJECT_LEAD"
+          },
+          "allowedActions": [
+            "FORWARD",
+            "RETURN"
+          ]
+        },
+        {
+          "approver": {
+            "type": "ROLE",
+            "officeLayerId": 35,
+            "role": "HEAD_OF_ENGINEERING"
+          },
+          "allowedActions": [
+            "RETURN",
+            "APPROVE",
             "REJECT"
           ]
         }
