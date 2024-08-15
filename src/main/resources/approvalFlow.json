@@ -1,0 +1,31 @@
+{
+  "flows": [
+    {
+      "applicationType": "LEAVE_APPLICATION",
+      "steps": [
+        {
+          "approver": {
+            "type": "POST",
+            "postId": "HR"
+          },
+          "allowedActions": [
+            "FORWARD",
+            "RETURN"
+          ]
+        },
+        {
+          "approver": {
+            "type": "ROLE",
+            "officeLayerId": 13,
+            "role": "TEAM_LEAD"
+          },
+          "allowedActions": [
+            "APPROVE",
+            "RETURN",
+            "REJECT"
+          ]
+        }
+      ]
+    }
+  ]
+}

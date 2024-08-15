@@ -1,9 +1,9 @@
 package org.example;
 
 public interface Approval {
-    public void initApproval();
-    public void approve();
+    public void submit();
+    public void sendBackToApplicant(boolean toApplicant);
     public void forward();
-    public void decline();
-    public void requestChange();
+    public void approve();
+    public void reject();
 }
