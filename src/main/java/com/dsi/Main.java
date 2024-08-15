@@ -14,8 +14,6 @@ public class Main {
 
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
         ApprovalDataParser approvalDataParser = new ApprovalDataParser();
-        //approvalDataParser.parseData("/home/najat/Documents/ApprovalFlow/src/main/resources/approvalFlow.json");
-        //logger.info("Parsing done");
 
         LeaveApplicationApproval leaveApplicationApproval = new LeaveApplicationApproval();
         leaveApplicationApproval.submit();
