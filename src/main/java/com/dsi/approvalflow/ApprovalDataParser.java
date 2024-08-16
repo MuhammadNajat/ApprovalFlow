@@ -1,9 +1,9 @@
-package com.dsi;
+package com.dsi.approvalflow;
 
-import com.dsi.dto.ApprovalPath;
-import com.dsi.dto.ApprovalPathStep;
-import com.dsi.dto.ApprovalPaths;
-import com.dsi.dto.Approver;
+import com.dsi.approvalflow.dto.ApprovalPath;
+import com.dsi.approvalflow.dto.ApprovalPathStep;
+import com.dsi.approvalflow.dto.ApprovalPaths;
+import com.dsi.approvalflow.dto.Approver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

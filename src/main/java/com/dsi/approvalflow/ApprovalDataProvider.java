@@ -1,15 +1,9 @@
-package com.dsi;
+package com.dsi.approvalflow;
 
-import com.dsi.dto.ApprovalPath;
-import com.dsi.dto.ApprovalPathStep;
-import com.dsi.dto.ApprovalPaths;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+import com.dsi.approvalflow.dto.ApprovalPath;
+import com.dsi.approvalflow.dto.ApprovalPathStep;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.appender.rolling.SizeBasedTriggeringPolicy;
-import org.apache.logging.log4j.message.StringFormattedMessage;
 
 import java.util.ArrayList;
 import java.util.List;

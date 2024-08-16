@@ -1,4 +1,4 @@
-package com.dsi.dto;
+package com.dsi.approvalflow.dto;
 
 import java.util.List;
 

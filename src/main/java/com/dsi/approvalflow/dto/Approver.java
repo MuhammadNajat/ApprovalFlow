@@ -1,4 +1,4 @@
-package com.dsi.dto;
+package com.dsi.approvalflow.dto;
 
 public class Approver {
     private String type;

@@ -1,18 +1,19 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
-group 'org.example'
+group 'org.dsi'
 version '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-}
 
 jar {
     manifest {
-        attributes('Main-Class': 'com.dsi.Main')
+        attributes('Main-Class': 'com.dsi.approvalflow.Main')
     }
+}
+
+repositories {
+    mavenCentral()
 }
 
 ext {
@@ -20,15 +21,29 @@ ext {
 }
 
 dependencies {
-    implementation 'org.json:json:20240303'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
     implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
     implementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
-
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
 }
 
-test {
-    useJUnitPlatform()
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'nexus'
+            url = uri('https://sonatype.innovatorslab.net/repository/maven-snapshots/')
+
+            credentials {
+                username = project.findProperty("repoUser")
+                password = project.findProperty("repoPassword")
+            }
+        }
+    }
 }

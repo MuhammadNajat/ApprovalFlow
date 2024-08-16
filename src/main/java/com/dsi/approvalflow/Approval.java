@@ -1,4 +1,4 @@
-package com.dsi;
+package com.dsi.approvalflow;
 
 public interface Approval {
     public void submit();
