@@ -5,23 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="feb99f49-5166-4be5-b062-4ef10bb0a04e" name="Changes" comment="Initialized project">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dsi/ApprovalDataParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dsi/ApprovalDataProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dsi/LeaveApplicationApproval.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dsi/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dsi/dto/ApprovalPath.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dsi/dto/ApprovalPaths.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dsi/dto/Approver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Approval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/Approval.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ApprovalDataParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ApprovalStep.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/dto/ApprovalPathStep.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/LicenseApproval.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/approvalFlow.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/approvalFlow.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/ApprovalDataParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/ApprovalDataParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/ApprovalDataProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/ApprovalDataProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,6 +103,7 @@
       <workItem from="1723640438329" duration="703000" />
       <workItem from="1723701061448" duration="13228000" />
       <workItem from="1723717841430" duration="4885000" />
+      <workItem from="1723880485199" duration="643000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized project">
       <created>1723638042588</created>

@@ -14,18 +14,18 @@ jar {
 
 repositories {
     mavenCentral()
+    google()
+    gradlePluginPortal()
 }
 
 ext {
-    log4jVersion = '2.21.1'
+    junitJupiterVersion = '5.10.0'
 }
 
 dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
-    implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
-    implementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
 }
 
 publishing {
