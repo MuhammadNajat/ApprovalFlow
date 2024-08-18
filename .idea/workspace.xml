@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="feb99f49-5166-4be5-b062-4ef10bb0a04e" name="Changes" comment="Initialized project">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/LeaveApproval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/LeaveApproval.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +133,7 @@
       <workItem from="1723640438329" duration="703000" />
       <workItem from="1723701061448" duration="13228000" />
       <workItem from="1723717841430" duration="4885000" />
-      <workItem from="1723880485199" duration="15737000" />
+      <workItem from="1723880485199" duration="16597000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized project">
       <created>1723638042588</created>
