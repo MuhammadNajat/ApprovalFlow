@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="feb99f49-5166-4be5-b062-4ef10bb0a04e" name="Changes" comment="Initialized project">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/ApprovalDataParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/ApprovalDataParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/ApprovalDataProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/ApprovalDataProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Approval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Approval.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,12 +21,26 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ApprovalFlow" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ApprovalFlow" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ApprovalFlow" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="publishing" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -83,13 +94,39 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.ApprovalFlow [publishAllPublicationsToNexusRepository]">
+    <configuration name="ApprovalFlow [publishAllPublicationsToNexusRepository]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="publishAllPublicationsToNexusRepository" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="ApprovalFlow" type="JarApplication">
       <option name="JAR_PATH" value="$PROJECT_DIR$/build/libs/ApprovalFlow-1.0-SNAPSHOT.jar" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.ApprovalFlow [publishAllPublicationsToNexusRepository]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -103,7 +140,7 @@
       <workItem from="1723640438329" duration="703000" />
       <workItem from="1723701061448" duration="13228000" />
       <workItem from="1723717841430" duration="4885000" />
-      <workItem from="1723880485199" duration="643000" />
+      <workItem from="1723880485199" duration="4360000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized project">
       <created>1723638042588</created>
