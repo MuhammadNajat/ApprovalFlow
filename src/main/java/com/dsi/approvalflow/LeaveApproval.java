@@ -14,7 +14,7 @@ public class LeaveApproval implements Approval {
     private Integer currentApprovalLevel;
 
     public LeaveApproval(String configPath, String applicationType) {
-        steps = ApprovalDataProvider.getApprovalFlowSteps(configPath, applicationType);
+        steps = ApprovalDataManager.getApprovalFlowSteps(configPath, applicationType);
         currentApprovalLevel = -1;
     }
 

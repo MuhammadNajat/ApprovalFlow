@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ApprovalDataProvider {
+public class ApprovalDataManager {
     private static ApprovalFlows getAllApprovalFlowsFromFile(String configPath) {
         ObjectMapper objectMapper = new ObjectMapper();
         ApprovalFlows approvalFlows = new ApprovalFlows();

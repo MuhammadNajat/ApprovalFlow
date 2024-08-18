@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="feb99f49-5166-4be5-b062-4ef10bb0a04e" name="Changes" comment="Initialized project">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Approval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Approval.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/ApprovalDataParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/ApprovalDataProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/ApprovalDataProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/ApprovalPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/ApprovalFlowSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/ApprovalPathStep.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/ApprovalFlowStep.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/ApprovalPaths.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/ApprovalFlows.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/Approver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/Approver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/approvalFlow.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/approvalFlow.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +133,7 @@
       <workItem from="1723640438329" duration="703000" />
       <workItem from="1723701061448" duration="13228000" />
       <workItem from="1723717841430" duration="4885000" />
-      <workItem from="1723880485199" duration="14276000" />
+      <workItem from="1723880485199" duration="14643000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized project">
       <created>1723638042588</created>

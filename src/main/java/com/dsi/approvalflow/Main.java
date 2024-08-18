@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
         LeaveApproval leaveApproval = new LeaveApproval(
                 "/home/najat/Documents/ApprovalFlow/src/main/resources/approvalFlow.json",
-                "LEAVE_APPLICATION"
+                "LICENSE_APPROVAL_APPLICATION"
         );
 
         leaveApproval.submit();
