@@ -9,12 +9,15 @@ public class Main {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
         LeaveApproval leaveApproval = new LeaveApproval(
                 "/home/najat/Documents/ApprovalFlow/src/main/resources/approvalFlow.json",
-                "LICENSE_APPROVAL_APPLICATION"
+                "LEAVE_APPLICATION"
         );
 
         leaveApproval.submit();
         leaveApproval.forward("Okay for me");
         leaveApproval.sendBack("Check carefully", false);
+        leaveApproval.sendBack("Check carefully 2", false);
+        leaveApproval.sendBack("Check carefully 3", false);
+        leaveApproval.sendBack("Check carefully 4", false);
         leaveApproval.forward("Seems good");
         leaveApproval.sendBackForCorrection("Sending back", true, null);
         leaveApproval.forward("Corrected.");

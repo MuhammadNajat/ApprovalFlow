@@ -33,11 +33,24 @@ public class LeaveApproval implements Approval {
     @Override
     public void sendBack(String comment, boolean toApplicant) {
         System.out.println(">>> >>> >>> Entered sendBack:");
+        if(currentApprovalLevel == -1) {
+            System.out.println("Application is with the applicant. Can't send it back further");
+            System.out.println("<<< <<< <<< Exiting sendBack");
+            return;
+        }
+
+        if(currentApprovalLevel == 0) {
+            System.out.println("Current level: 0");
+            System.out.println("Next level: -1");
+            System.out.println("<<< <<< <<< Exiting sendBack");
+            return;
+        }
+
         ApprovalFlowStep nextStep = steps.get(currentApprovalLevel - 1);
         System.out.println("Send back to applicant: " + toApplicant);
         System.out.println("Current level: " + currentApprovalLevel);
         currentApprovalLevel = toApplicant? -1 : currentApprovalLevel - 1;
-        System.out.println("Next level: " + currentApprovalLevel);        System.out.println("NEXT STEP:");
+        System.out.println("Next level: " + currentApprovalLevel);
         System.out.println("Next step info:");
         printStepData(nextStep);
         System.out.println("<<< <<< <<< Exiting sendBack");
