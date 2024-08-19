@@ -6,8 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Approver {
+    private Long id;
     private String type;
     private String postId;
-    private Integer officeLayerId;
+    private Long officeLayerId;
     private String role;
 }

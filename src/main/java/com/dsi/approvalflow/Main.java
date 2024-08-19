@@ -1,5 +1,6 @@
 package com.dsi.approvalflow;
 
+import com.dsi.approvalflow.mockentity.ApprovalRequest;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -7,9 +8,10 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
+        ApprovalRequest approvalRequest = new ApprovalRequest();
         LeaveApproval leaveApproval = new LeaveApproval(
-                "/home/najat/Documents/ApprovalFlow/src/main/resources/approvalFlow.json",
-                "LEAVE_APPLICATION"
+                "LEAVE_APPLICATION",
+                approvalRequest
         );
 
         leaveApproval.submit();
