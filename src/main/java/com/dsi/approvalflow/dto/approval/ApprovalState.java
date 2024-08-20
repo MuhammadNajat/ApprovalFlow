@@ -1,7 +1,8 @@
-package com.dsi.approvalflow.mockentity;
+package com.dsi.approvalflow.dto.approval;
 
 public enum ApprovalState {
-    IN_REVIEW,
+    DRAFT,
+    PENDING,
     RETURNED,
     APPROVED,
     REJECTED

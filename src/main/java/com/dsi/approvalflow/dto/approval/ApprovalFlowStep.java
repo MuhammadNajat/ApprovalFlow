@@ -1,5 +1,6 @@
-package com.dsi.approvalflow.dto;
+package com.dsi.approvalflow.dto.approval;
 
+import com.dsi.approvalflow.dto.Approver;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,8 +11,9 @@ import java.util.Objects;
 @Setter
 public class ApprovalFlowStep {
     private Approver approver;
-    private List<String> allowedActions;
+    private List<ReviewAction> allowedActions;
 
+    // TODO: find out if it is really required
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

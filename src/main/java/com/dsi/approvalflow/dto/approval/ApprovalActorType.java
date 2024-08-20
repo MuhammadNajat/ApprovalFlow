@@ -1,4 +1,4 @@
-package com.dsi.approvalflow.mockentity;
+package com.dsi.approvalflow.dto.approval;
 
 public enum ApprovalActorType {
     USER,

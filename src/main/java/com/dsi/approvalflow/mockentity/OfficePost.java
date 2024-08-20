@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
-public class Post {
+public class OfficePost {
     private Long id;
     private String name;
 
@@ -15,7 +15,7 @@ public class Post {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Post that = (Post) o;
+        OfficePost that = (OfficePost) o;
         return Objects.equals(id, that.id)
                 && Objects.equals(name, that.name);
     }
