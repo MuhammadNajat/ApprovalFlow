@@ -1,4 +1,8 @@
 package com.dsi.approvalflow.mockentity;
 
-public class Role {
+public enum Role {
+    APPLICANT,
+    ASSISTANT_CONTROLLER,
+    CONTROLLER,
+    SECRETARY
 }

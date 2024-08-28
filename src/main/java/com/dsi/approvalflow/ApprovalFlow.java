@@ -5,9 +5,9 @@ import java.util.Map;
 
 public interface ApprovalFlow {
     void submit();
-    void sendBack(String comment, boolean toApplicant);
+    void resubmit();
+    void sendBack(String comment, boolean toApplicant, List<Map<String, String>> correctableFields);
     void forward(String comment);
     void approve(String comment);
     void reject(String comment);
-    void sendBackForCorrection(String comment, boolean toApplicant, List<Map<String, String>> correctableFields);
 }

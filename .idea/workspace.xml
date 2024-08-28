@@ -5,12 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="feb99f49-5166-4be5-b062-4ef10bb0a04e" name="Changes" comment="Initialized project">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/ApprovalDataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/ApprovalDataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/LeaveApproval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/LeaveApproval.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/ApprovalFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/ApprovalFlow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/BaseApprovalFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/BaseApprovalFlow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/ApprovalFlowStep.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/ApprovalFlowStep.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/Approver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/ApplicationType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/ApprovalFlowSteps.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/Approver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/approval/ApprovalActorType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/approval/ApprovalFlowStep.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/approval/ApprovalFlows.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/approval/ApprovalState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/approval/ReviewAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/dto/approval/ReviewerType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/ApprovalActionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/ApprovalActionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/ApprovalActor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/ApprovalHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/ApprovalHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/Employee.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/LeaveApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/OfficePost.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/service/LeaveApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/service/LeaveApplicationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/util/ApprovalDataManager.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,11 +54,6 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ApprovalFlow" type="f1a62948:ProjectNode" />
               </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ApprovalFlow" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
             </expand>
             <select />
           </tree_state>
@@ -52,6 +66,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -74,7 +89,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/najat/Documents/ApprovalFlow/src/main/resources&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/najat/Development/Approval/ApprovalFlow&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -92,7 +107,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ApprovalFlow [publishAllPublicationsToNexusRepository]">
+  <component name="RunManager">
     <configuration name="ApprovalFlow [publishAllPublicationsToNexusRepository]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -140,6 +155,9 @@
       <workItem from="1723717841430" duration="4885000" />
       <workItem from="1723880485199" duration="19946000" />
       <workItem from="1723983855249" duration="3728000" />
+      <workItem from="1724742188117" duration="868000" />
+      <workItem from="1724746573655" duration="11889000" />
+      <workItem from="1724822182474" duration="13010000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized project">
       <created>1723638042588</created>

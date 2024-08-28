@@ -1,10 +1,10 @@
 package com.dsi.approvalflow.mockentity;
 
 public enum ApprovalActionType {
+    RESUBMIT,
     FORWARD,
-    REQUEST_CORRECTIONS,
     RETURN,
+    SENT_BACK,
     APPROVE,
     REJECT,
-    ASSIGNED
 }

@@ -1,4 +1,4 @@
-package com.dsi.approvalflow.dto;
+package com.dsi.approvalflow.mockentity;
 
 public enum ApplicationType {
     LEAVE_APPLICATION,

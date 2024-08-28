@@ -1,7 +1,5 @@
 package com.dsi.approvalflow.mockentity;
 
-import com.dsi.approvalflow.dto.approval.ApprovalActorType;
-import com.dsi.approvalflow.dto.approval.ReviewAction;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,27 +15,36 @@ import java.util.Map;
 @NoArgsConstructor
 public class ApprovalHistory {
     private Long id;
-
-    private LocalDateTime assignedOn;
-    private ApprovalActorType approvalActorType;
-    private Long actorId;
-
-    private LocalDateTime actionTakenOn;
-    private ReviewAction actionTaken;
+    private Long applicationId;
+    private Long userId;
+    private Long employeeId;
+    private Long officePostHistoryId;
+    private ApprovalActionType actionType;
+    private LocalDateTime assignedAt;
+    private LocalDateTime reviewedAt;
     private String comment;
-
-    // TODO: figure out if this is the best way to request correction
     private List<Map<String, String>> correctableFields;
+    private List<Long> assignedUsers;
 
-    public void saveAssignment(LocalDateTime assignedOn, ApprovalActorType approvalActorType, Long actorId) {
-        this.assignedOn = assignedOn;
-        this.approvalActorType = approvalActorType;
-        this.actorId = actorId;
+    public void saveAssignment(Long id, Long applicationId, LocalDateTime assignedAt) {
+        this.id = id;
+        this.applicationId = applicationId;
+        this.assignedAt = assignedAt;
     }
 
-    public void saveActionTaken(LocalDateTime actionTakenOn, ReviewAction actionTaken, String comment) {
-        this.actionTakenOn = actionTakenOn;
-        this.actionTaken = actionTaken;
+    public void saveAssignment(Long applicationId, LocalDateTime assignedAt) {
+        this.applicationId = applicationId;
+        this.assignedAt = assignedAt;
+    }
+
+    public void saveAction(Long userId, Long employeeId, Long officePostHistoryId, LocalDateTime reviewedAt, ApprovalActionType actionType, String comment, List<Map<String, String>> correctableFields, List<Long> assignedUsers) {
+        this.userId = userId;
+        this.employeeId = employeeId;
+        this.officePostHistoryId = officePostHistoryId;
+        this.reviewedAt = reviewedAt;
+        this.actionType = actionType;
         this.comment = comment;
+        this.correctableFields = correctableFields;
+        this.assignedUsers = assignedUsers;
     }
 }
