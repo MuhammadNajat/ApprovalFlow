@@ -12,6 +12,9 @@ import java.util.Map;
 @Getter
 @Setter
 public class ApplicationRoleService {
+
+    // TODO: save as per actual design
+
     //private List<ApplicationRole> applicationRoles;
     private Map<Long, List<Role>> applicationRoles = new HashMap<>();
 

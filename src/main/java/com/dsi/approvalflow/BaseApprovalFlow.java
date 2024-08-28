@@ -11,7 +11,7 @@ import java.util.*;
 ;
 
 public class BaseApprovalFlow implements ApprovalFlow {
-    private Application<?> application;
+    private Application application;
     private List<ApprovalStep> approvalSteps;
     private List<ApprovalHistory> histories = new ArrayList<>();
     private ApplicationType applicationType;
@@ -23,31 +23,37 @@ public class BaseApprovalFlow implements ApprovalFlow {
     private ApprovalStepService approvalStepService = new ApprovalStepService();
     private ApplicationRoleService applicationRoleService = new ApplicationRoleService();
 
-    public BaseApprovalFlow(ApplicationType applicationType, Application<?> application) {
-        this.applicationType = applicationType;
+    public BaseApprovalFlow(Application application) {
+        this.applicationType = application.getType();
         //approvalSteps = approvalStepService.getApprovalSteps(ApplicationType.LEAVE_APPLICATION, "EMPLOYEE");
         this.application = application;
     }
 
     @Override
     public void submit() {
-        List<ApprovalStep> nextSteps = approvalStepService.getNextSteps(ApplicationType.LEAVE_APPLICATION, new ArrayList<>(), null, null);
+        // TODO: Add validation
+        List<ApprovalStep> initialSteps = approvalStepService.getInitialStep(ApplicationType.LEAVE_APPLICATION, new ArrayList<>());
+        // TODO: Handle exceptions
 
         application.setApprovalStatus(ApprovalStatus.PENDING);
         application.setInternalStatus(InternalStatus.SUBMITTED);
-        application.setPath(nextSteps.get(0).getPath());
-        application.setCurrentLevel(nextSteps.get(0).getLevel());
+
+        application.setPathNo(initialSteps.get(0).getPathNo());
+        application.setCurrentStepNo(initialSteps.get(0).getStepNo());
 
 
-        List<Role> roles = getRoles(nextSteps);
-        applicationRoleService.setRolesForApplication(Long.valueOf(application.getId().toString()), roles);
+        // TODO: use stream/map
+        List<Role> roles = getRoles(initialSteps);
+        applicationRoleService.setRolesForApplication(application.getId(), roles);
 
-        notifyUsers(roles);
 
         ApprovalHistory history = new ApprovalHistory();
-        history.saveAssignment(Long.valueOf(histories.size()), Long.valueOf(application.getId().toString()), LocalDateTime.now() );
+        history.saveAssignment(Long.valueOf(histories.size()), application.getId(), LocalDateTime.now());
 
         histories.add(history);
+
+        // TODO: async / aspect & integrate with notification service
+        notifyUsers(roles);
 
         //Debug code
         System.out.println("*** Showing history on submit():");
@@ -61,15 +67,15 @@ public class BaseApprovalFlow implements ApprovalFlow {
 
         application.setApprovalStatus(ApprovalStatus.PENDING);
 
-        List<ApprovalStep> currentSteps = approvalStepService.getCurrentSteps(ApplicationType.LEAVE_APPLICATION, new ArrayList<>(), application.getPath(), application.getCurrentLevel());
+        List<ApprovalStep> currentSteps = approvalStepService.getCurrentSteps(ApplicationType.LEAVE_APPLICATION, new ArrayList<>(), application.getPathNo(), application.getCurrentStepNo());
 
-        List<ApprovalStep> nextSteps = approvalStepService.getCurrentSteps(ApplicationType.LEAVE_APPLICATION, new ArrayList<>(), application.getPath(), application.getCurrentLevel());;
+        List<ApprovalStep> nextSteps = approvalStepService.getCurrentSteps(ApplicationType.LEAVE_APPLICATION, new ArrayList<>(), application.getPathNo(), application.getCurrentStepNo());;
         if(currentSteps.get(0).getStartOverOnResubmit()) {
-            nextSteps = approvalStepService.getNextSteps(ApplicationType.LEAVE_APPLICATION, new ArrayList<>(), null, null);
+            nextSteps = approvalStepService.getNextStep(ApplicationType.LEAVE_APPLICATION, null, null);
         }
 
-        application.setPath(nextSteps.get(0).getPath());
-        application.setCurrentLevel(nextSteps.get(0).getLevel());
+        application.setPathNo(nextSteps.get(0).getPathNo());
+        application.setCurrentStepNo(nextSteps.get(0).getStepNo());
 
         List<Role> roles = getRoles(nextSteps);
         applicationRoleService.removeRolesForApplication(Long.valueOf(application.getId().toString()));
@@ -94,14 +100,14 @@ public class BaseApprovalFlow implements ApprovalFlow {
 
         }
         else {
-            List<ApprovalStep> prevSteps = approvalStepService.getPreviousSteps(ApplicationType.LEAVE_APPLICATION, new ArrayList<>(), application.getPath(), application.getCurrentLevel());
+            List<ApprovalStep> prevSteps = approvalStepService.getPreviousSteps(ApplicationType.LEAVE_APPLICATION, new ArrayList<>(), application.getPathNo(), application.getCurrentStepNo());
             roles = getRoles(prevSteps);
             applicationRoleService.removeRolesForApplication(Long.valueOf(application.getId().toString()));
             applicationRoleService.setRolesForApplication(Long.valueOf(application.getId().toString()), roles);
 
             application.setApprovalStatus(ApprovalStatus.SENT_BACK);
-            application.setPath(prevSteps.get(0).getPath());
-            application.setCurrentLevel(prevSteps.get(0).getLevel());
+            application.setPathNo(prevSteps.get(0).getPathNo());
+            application.setCurrentStepNo(prevSteps.get(0).getStepNo());
         }
 
         notifyUsers(roles);
@@ -120,26 +126,32 @@ public class BaseApprovalFlow implements ApprovalFlow {
 
     @Override
     public void forward(String comment) {
-        ApprovalHistory forwardHistory = histories.get(histories.size() - 1);
-        forwardHistory.saveAction(1L, 1L, 1L, LocalDateTime.now(), ApprovalActionType.FORWARD, comment, null, Arrays.asList(1L, 4L));
+        // TODO: add validation
 
-        List<ApprovalStep> nextSteps = approvalStepService.getNextSteps(ApplicationType.LEAVE_APPLICATION, new ArrayList<>(), application.getPath(), application.getCurrentLevel());
+        List<ApprovalStep> nextSteps = approvalStepService.getNextStep(ApplicationType.LEAVE_APPLICATION, application.getPathNo(), application.getCurrentStepNo());
+        // TODO: handle exception
 
+        application.setApprovalStatus(ApprovalStatus.PENDING);      // TODO: determine if this is required
+        application.setPathNo(nextSteps.get(0).getPathNo());        // TODO: determine if this is required
+        application.setCurrentStepNo(nextSteps.get(0).getStepNo());
+
+        // TODO: use stream/map
         List<Role> roles = getRoles(nextSteps);
+        // TODO: single method for the next two process
         applicationRoleService.removeRolesForApplication(Long.valueOf(application.getId().toString()));
         applicationRoleService.setRolesForApplication(Long.valueOf(application.getId().toString()), roles);
 
-        notifyUsers(roles);
+        // TODO: single method to handle below two action
+        // Update existing history for action
+        ApprovalHistory currentHistory = histories.get(histories.size() - 1);
+        currentHistory.saveAction(1L, 1L, 1L, LocalDateTime.now(), ApprovalActionType.FORWARD, comment, null, Arrays.asList(1L, 4L));
 
-        application.setApprovalStatus(ApprovalStatus.PENDING);
-        if(!nextSteps.isEmpty()) {
-            application.setPath(nextSteps.get(0).getPath());
-            application.setCurrentLevel(nextSteps.get(0).getLevel());
-        }
-
+        // Add new history for next reviewer
         ApprovalHistory history = new ApprovalHistory();
         history.saveAssignment(Long.valueOf(histories.size()), Long.valueOf(application.getId().toString()), LocalDateTime.now() );
         histories.add(history);
+
+        notifyUsers(roles);
 
         //Debug code
         System.out.println("*** Showing history on forward():");

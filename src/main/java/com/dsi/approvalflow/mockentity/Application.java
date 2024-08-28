@@ -5,15 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Application<T> {
-    private T id;
-    private Integer path;
-    private Integer currentLevel;
+public class Application {
+    private Long id;
+    private ApplicationType type;
+    private Integer pathNo;
+    private Integer currentStepNo;
     private ApprovalStatus approvalStatus;
     private InternalStatus internalStatus;
-
-    // TODO: determine if they are required
-    //private ApprovalActorType applicantType;
-    private Long applicantId;
-    private String approvalBody;
 }

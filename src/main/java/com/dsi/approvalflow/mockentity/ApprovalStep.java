@@ -15,8 +15,8 @@ public class ApprovalStep {
     private Long id;
     private ApplicationType applicationType;
     private Role applicantRole;
-    private Integer path;
-    private Integer level;
+    private Integer pathNo;
+    private Integer stepNo;
     private Role reviewerRole;
     private Boolean startOverOnResubmit;
     private List<AllowedApprovalActions> allowedApprovalActions;

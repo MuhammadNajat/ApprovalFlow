@@ -12,11 +12,8 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
-        LeaveApplication application =  createLeaveApplication();
-        LeaveApplicationService leaveApplicationService = new LeaveApplicationService(
-                ApplicationType.LEAVE_APPLICATION,
-                application
-        );
+        LeaveApplication application = createLeaveApplication();
+        LeaveApplicationService leaveApplicationService = new LeaveApplicationService(application);
 
         leaveApplicationService.submit();
         leaveApplicationService.sendBack("Documents and info are missing", true, Arrays.asList(Map.of("Application body", "Please attach files")));
@@ -32,8 +29,8 @@ public class Main {
 
     private static LeaveApplication createLeaveApplication() {
         LeaveApplication application = new LeaveApplication();
-        application.setId(1);
-        application.setApprovalBody("Please approve.");
+        application.setId(1L);
+        application.setType(ApplicationType.LEAVE_APPLICATION);
         return application;
     }
 }

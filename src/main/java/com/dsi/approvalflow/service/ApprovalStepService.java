@@ -18,8 +18,8 @@ public class ApprovalStepService {
         step1.setId(1L);
         step1.setApplicationType(ApplicationType.LEAVE_APPLICATION);
         step1.setApplicantRole(Role.APPLICANT);
-        step1.setPath(0);
-        step1.setLevel(0);
+        step1.setPathNo(0);
+        step1.setStepNo(0);
         step1.setReviewerRole(Role.ASSISTANT_CONTROLLER);
         step1.setStartOverOnResubmit(false);
         step1.setAllowedApprovalActions(Arrays.asList(
@@ -32,8 +32,8 @@ public class ApprovalStepService {
         step2.setId(2L);
         step2.setApplicationType(ApplicationType.LEAVE_APPLICATION);
         step2.setApplicantRole(Role.APPLICANT);
-        step2.setPath(0);
-        step2.setLevel(1);
+        step2.setPathNo(0);
+        step2.setStepNo(1);
         step2.setReviewerRole(Role.CONTROLLER);
         step2.setStartOverOnResubmit(false);
         step2.setAllowedApprovalActions(Arrays.asList(
@@ -46,8 +46,8 @@ public class ApprovalStepService {
         step3.setId(3L);
         step3.setApplicationType(ApplicationType.LEAVE_APPLICATION);
         step3.setApplicantRole(Role.APPLICANT);
-        step3.setPath(0);
-        step3.setLevel(2);
+        step3.setPathNo(0);
+        step3.setStepNo(2);
         step3.setReviewerRole(Role.SECRETARY);
         step3.setStartOverOnResubmit(false);
         step3.setAllowedApprovalActions(Arrays.asList(
@@ -65,14 +65,14 @@ public class ApprovalStepService {
     public List<Role> getReviewerRoles(ApplicationType applicationType, String applicantRole, Integer path, Integer level) {
         List<Role> roles = new ArrayList<>();
         for(ApprovalStep approvalStep : getApprovalSteps(applicationType, Role.APPLICANT)) {
-            if(approvalStep.getPath() == path && approvalStep.getLevel() == level) {
+            if(approvalStep.getPathNo() == path && approvalStep.getStepNo() == level) {
                 roles.add(approvalStep.getReviewerRole());
             }
         }
         return roles;
     }
 
-    public List<ApprovalStep> getNextSteps(ApplicationType applicationType, List<Role> roles, Integer path, Integer level) {
+    public List<ApprovalStep> getNextStep(ApplicationType applicationType, Integer path, Integer level) {
         List<ApprovalStep> steps = getApprovalSteps(applicationType, Role.APPLICANT);
         List<ApprovalStep> nextSteps = new ArrayList<>();
         if(path == null) {
@@ -81,10 +81,19 @@ public class ApprovalStepService {
         }
         for (ApprovalStep step : steps) {
             if (applicationType == step.getApplicationType() &&
-                    step.getPath() == path && step.getLevel() == (level + 1)) {
+                    step.getPathNo() == path && step.getStepNo() == (level + 1)) {
                 nextSteps.add(step);
             }
         }
+        return nextSteps;
+    }
+
+    public List<ApprovalStep> getInitialStep(ApplicationType applicationType, List<Role> roles) {
+        // TODO: confirm with omar will it throw exception or empty array
+
+        List<ApprovalStep> steps = getApprovalSteps(applicationType, Role.APPLICANT);
+        List<ApprovalStep> nextSteps = new ArrayList<>();
+        nextSteps.add(steps.get(0));
         return nextSteps;
     }
 
@@ -96,7 +105,7 @@ public class ApprovalStepService {
         List<ApprovalStep> prevSteps = new ArrayList<>();
         for (ApprovalStep step : steps) {
             if (applicationType == step.getApplicationType() &&
-                    step.getPath() == path && step.getLevel() == (level - 1)) {
+                    step.getPathNo() == path && step.getStepNo() == (level - 1)) {
                 prevSteps.add(step);
             }
         }
@@ -111,7 +120,7 @@ public class ApprovalStepService {
         List<ApprovalStep> currentSteps = new ArrayList<>();
         for (ApprovalStep step : steps) {
             if (applicationType == step.getApplicationType() &&
-                    step.getPath() == path && step.getLevel() == level) {
+                    step.getPathNo() == path && step.getStepNo() == level) {
                 currentSteps.add(step);
             }
         }

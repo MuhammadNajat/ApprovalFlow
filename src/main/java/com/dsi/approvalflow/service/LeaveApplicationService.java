@@ -9,8 +9,8 @@ public class LeaveApplicationService extends LeaveApplicationApprovalFlow {
 
     private LeaveApplication application;
 
-    public LeaveApplicationService(ApplicationType applicationType, LeaveApplication application) {
-        super(applicationType, application);
+    public LeaveApplicationService(LeaveApplication application) {
+        super(application);
         this.application = application;
     }
 }

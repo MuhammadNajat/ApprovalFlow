@@ -23,16 +23,11 @@ public class ApprovalHistory {
     private LocalDateTime assignedAt;
     private LocalDateTime reviewedAt;
     private String comment;
-    private List<Map<String, String>> correctableFields;
-    private List<Long> assignedUsers;
+    private List<Map<String, String>> correctableFields;        // only for correction
+    private List<Long> assignedUsers;                           // for reporting purpose only, TODO: should be string
 
     public void saveAssignment(Long id, Long applicationId, LocalDateTime assignedAt) {
         this.id = id;
-        this.applicationId = applicationId;
-        this.assignedAt = assignedAt;
-    }
-
-    public void saveAssignment(Long applicationId, LocalDateTime assignedAt) {
         this.applicationId = applicationId;
         this.assignedAt = assignedAt;
     }
