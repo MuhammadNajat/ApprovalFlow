@@ -9,6 +9,7 @@ import java.util.List;
 
 public class UserService {
     List<User> users;
+    private User currentUser;
 
     public UserService() {
         users = Arrays.asList(
@@ -37,5 +38,13 @@ public class UserService {
             }
         }
         return null;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
     }
 }

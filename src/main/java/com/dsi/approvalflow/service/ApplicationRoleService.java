@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Getter
@@ -23,8 +24,9 @@ public class ApplicationRoleService {
             System.out.println("Application ID: " + data.getApplicationId() + " Role: " + data.getRole().toString());
         }
 
+        // TODO: persist in database using application id
         applicationRoles = applicationRoles.stream()
-                .filter(applicationRole -> applicationRole.getApplicationId() != applicationId)
+                .filter(applicationRole -> !Objects.equals(applicationRole.getApplicationId(), applicationId))
                 .collect(Collectors.toList());
 
         System.out.println("After removing applicationRoles");
@@ -33,12 +35,14 @@ public class ApplicationRoleService {
         }
     }
 
-    public void setRolesForApplication(Long applicationId, List<Role> roles) {
+    public void setRolesForApplication(Long applicationId, List<Role> reviewerRoles) {
         removeRolesForApplication(applicationId);
-        for (Role role : roles) {
+        // TODO: use stream/map
+        for (Role role : reviewerRoles) {
             ApplicationRole applicationRole = new ApplicationRole(applicationId, role.toString());
             applicationRoles.add(applicationRole);
         }
+
         System.out.println("After adding applicationRoles");
         for(ApplicationRole data : applicationRoles) {
             System.out.println("Application ID: " + data.getApplicationId() + " Role: " + data.getRole().toString());

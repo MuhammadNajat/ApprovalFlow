@@ -11,10 +11,9 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class BaseApprovalFlow implements ApprovalFlow {
+public abstract class BaseApprovalFlow implements ApprovalFlow {
     private Application application;
     private List<ApprovalHistory> histories = new ArrayList<>();
-    private User currentUser;
 
     //Dummy services
     private ApprovalStepService approvalStepService = new ApprovalStepService();
@@ -27,48 +26,43 @@ public class BaseApprovalFlow implements ApprovalFlow {
 
     @Override
     public void submit() {
-        System.out.println(">>> >>> >>> Entered Submit");
         try {
+            System.out.println(">>> >>> >>> Entered Submit");
             validateState(ApprovalStatus.PENDING);
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-            return;
+
+            List<ApprovalStep> initialSteps = approvalStepService
+                    .getInitialStep(application.getType(), userService.getCurrentUser().getRoles());
+
+            application.setPathNo(initialSteps.get(0).getPathNo());
+            application.setCurrentStepNo(initialSteps.get(0).getStepNo());
+            application.setApprovalStatus(ApprovalStatus.PENDING);
+            application.setInternalStatus(InternalStatus.SUBMITTED);
+
+            List<Role> reviewerRoles = initialSteps.stream()
+                    .map(ApprovalStep::getReviewerRole)
+                    .distinct()
+                    .collect(Collectors.toList());
+
+            applicationRoleService.setRolesForApplication(application.getId(), reviewerRoles);
+
+
+            // TODO: refactor to a method
+            ApprovalHistory history = new ApprovalHistory();
+            history.saveAssignment(Long.valueOf(histories.size()), application.getId(), LocalDateTime.now());
+
+            // TODO: persist in db
+            histories.add(history);
+
+            // TODO: async / aspect & integrate with notification service
+            notifyUsers(reviewerRoles);
+
+            //Debug code
+            System.out.println("*** Showing history on submit():");
+            showHistory();
+            System.out.println("<<< <<< <<< Exiting Submit");
+        } catch (Exception ex) {
+            // TODO: handle exceptions as required
         }
-
-        List<ApprovalStep> initialSteps = new ArrayList<>();
-        try {
-            initialSteps = approvalStepService.getInitialStep(ApplicationType.LEAVE_APPLICATION, currentUser.getRoles());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
-
-        application.setApprovalStatus(ApprovalStatus.PENDING);
-        application.setInternalStatus(InternalStatus.SUBMITTED);
-
-        application.setPathNo(initialSteps.get(0).getPathNo());
-        application.setCurrentStepNo(initialSteps.get(0).getStepNo());
-
-        List<Role> roles = initialSteps.stream()
-                .map(ApprovalStep::getReviewerRole)
-                .distinct()
-                .collect(Collectors.toList());
-
-        applicationRoleService.setRolesForApplication(application.getId(), roles);
-
-
-        ApprovalHistory history = new ApprovalHistory();
-        history.saveAssignment(Long.valueOf(histories.size()), application.getId(), LocalDateTime.now());
-
-        histories.add(history);
-
-        // TODO: async / aspect & integrate with notification service
-        notifyUsers(roles);
-
-        //Debug code
-        System.out.println("*** Showing history on submit():");
-        showHistory();
-        System.out.println("<<< <<< <<< Exiting Submit");
     }
 
     @Override
@@ -79,7 +73,7 @@ public class BaseApprovalFlow implements ApprovalFlow {
         try {
             validateState(ApprovalStatus.PENDING);
             currentStep = approvalStepService.getStepWithPathAndStepNo(ApplicationType.LEAVE_APPLICATION,
-                    currentUser.getRoles(), application.getPathNo(), application.getCurrentStepNo());
+                    userService.getCurrentUser().getRoles(), application.getPathNo(), application.getCurrentStepNo());
         } catch (RuntimeException e) {
             e.printStackTrace();
             return;
@@ -90,11 +84,11 @@ public class BaseApprovalFlow implements ApprovalFlow {
 
         List<ApprovalStep> nextStep = new ArrayList<>();
 
-        nextStep = approvalStepService.getInitialStep(ApplicationType.LEAVE_APPLICATION, currentUser.getRoles());
+        nextStep = approvalStepService.getInitialStep(ApplicationType.LEAVE_APPLICATION, userService.getCurrentUser().getRoles());
         if (!currentStep.get(0).getStartOverOnResubmit()) {
             try {
                 nextStep = approvalStepService.getStepWithPathAndStepNo(ApplicationType.LEAVE_APPLICATION,
-                        currentUser.getRoles(), application.getPathNo(), application.getCurrentStepNo());
+                        userService.getCurrentUser().getRoles(), application.getPathNo(), application.getCurrentStepNo());
             } catch (Exception e) {
                 e.printStackTrace();
                 //Empty step list returned
@@ -116,7 +110,7 @@ public class BaseApprovalFlow implements ApprovalFlow {
 
         ApprovalHistory resubmitHistory = histories.get(histories.size() - 1);
         String assigneesCommaSeparated = getCommaSeparatedEmployeeIds(nextStepRoles);
-        resubmitHistory.saveAction(currentUser.getId(), 1L, 1L, LocalDateTime.now(),
+        resubmitHistory.saveAction(userService.getCurrentUser().getId(), 1L, 1L, LocalDateTime.now(),
                 ApprovalActionType.RESUBMIT, null, null, assigneesCommaSeparated);
 
         ApprovalHistory history = new ApprovalHistory();
@@ -139,7 +133,7 @@ public class BaseApprovalFlow implements ApprovalFlow {
         List<ApprovalStep> currentStep = new ArrayList<>();
         try {
             currentStep = approvalStepService.getStepWithPathAndStepNo(ApplicationType.LEAVE_APPLICATION,
-                    currentUser.getRoles(), application.getPathNo(), application.getCurrentStepNo());
+                    userService.getCurrentUser().getRoles(), application.getPathNo(), application.getCurrentStepNo());
         } catch (Exception e) {
             //If no step found
             e.printStackTrace();
@@ -161,7 +155,7 @@ public class BaseApprovalFlow implements ApprovalFlow {
 
         if (!returnsToApplicant) {
             List<ApprovalStep> prevStep = approvalStepService.getPreviousStep(ApplicationType.LEAVE_APPLICATION,
-                    currentUser.getRoles(), application.getPathNo(), application.getCurrentStepNo());
+                    userService.getCurrentUser().getRoles(), application.getPathNo(), application.getCurrentStepNo());
             prevStepRoles = prevStep.stream()
                     .map(ApprovalStep::getReviewerRole)
                     .distinct()
@@ -176,7 +170,7 @@ public class BaseApprovalFlow implements ApprovalFlow {
         // Update existing history for action
         ApprovalHistory sendBackHistory = histories.get(histories.size() - 1);
         String assigneesCommaSeparated = getCommaSeparatedEmployeeIds(prevStepRoles);
-        sendBackHistory.saveAction(currentUser.getId(), 1L, 1L, LocalDateTime.now(),
+        sendBackHistory.saveAction(userService.getCurrentUser().getId(), 1L, 1L, LocalDateTime.now(),
                 ApprovalActionType.SENT_BACK, comment, correctableFields, assigneesCommaSeparated);
 
         // Add new history for next reviewer
@@ -224,7 +218,7 @@ public class BaseApprovalFlow implements ApprovalFlow {
         // Update existing history for action
         ApprovalHistory currentHistory = histories.get(histories.size() - 1);
         String commaSeparatedAssignees = getCommaSeparatedEmployeeIds(roles);
-        currentHistory.saveAction(currentUser.getId(), 1L, 1L, LocalDateTime.now(),
+        currentHistory.saveAction(userService.getCurrentUser().getId(), 1L, 1L, LocalDateTime.now(),
                 ApprovalActionType.FORWARD, comment, null, commaSeparatedAssignees);
 
         // Add new history for next reviewer
@@ -247,7 +241,7 @@ public class BaseApprovalFlow implements ApprovalFlow {
         List<ApprovalStep> currentStep = new ArrayList<>();
         try {
             validateState(ApprovalStatus.APPROVED);
-            currentStep = approvalStepService.getStepWithPathAndStepNo(application.getType(), currentUser.getRoles(),
+            currentStep = approvalStepService.getStepWithPathAndStepNo(application.getType(), userService.getCurrentUser().getRoles(),
                     application.getPathNo(), application.getCurrentStepNo());
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -266,7 +260,7 @@ public class BaseApprovalFlow implements ApprovalFlow {
 
         String assigneesCommaSeparated = getCommaSeparatedEmployeeIds(currentStepRoles);
         ApprovalHistory approvalHistory = histories.get(histories.size() - 1);
-        approvalHistory.saveAction(currentUser.getId(), 1L, 1L, LocalDateTime.now(),
+        approvalHistory.saveAction(userService.getCurrentUser().getId(), 1L, 1L, LocalDateTime.now(),
                 ApprovalActionType.APPROVE, comment, null, assigneesCommaSeparated);
 
         //Debug code
@@ -283,7 +277,7 @@ public class BaseApprovalFlow implements ApprovalFlow {
         List<ApprovalStep> currentStep = new ArrayList<>();
         try {
             validateState(ApprovalStatus.REJECTED);
-            currentStep = approvalStepService.getStepWithPathAndStepNo(application.getType(), currentUser.getRoles(),
+            currentStep = approvalStepService.getStepWithPathAndStepNo(application.getType(), userService.getCurrentUser().getRoles(),
                     application.getPathNo(), application.getCurrentStepNo());
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -303,7 +297,7 @@ public class BaseApprovalFlow implements ApprovalFlow {
         String assigneesCommaSeparated = getCommaSeparatedEmployeeIds(roles);
 
         ApprovalHistory approvalHistory = histories.get(histories.size() - 1);
-        approvalHistory.saveAction(currentUser.getId(), 1L, 1L, LocalDateTime.now(),
+        approvalHistory.saveAction(userService.getCurrentUser().getId(), 1L, 1L, LocalDateTime.now(),
                 ApprovalActionType.REJECT, comment, null, assigneesCommaSeparated);
 
         //Debug code
@@ -364,14 +358,6 @@ public class BaseApprovalFlow implements ApprovalFlow {
         }
         response = response.length() > 0? response.substring(0, response.length() - 1) : "";
         return response;
-    }
-
-    public User getCurrentUser() {
-        return currentUser;
-    }
-
-    public void setCurrentUser(User user) {
-        this.currentUser = user;
     }
 
     private void showHistory() {

@@ -26,41 +26,43 @@ public class Main {
         User controller = userService.getUserById(3L);
         User secretary = userService.getUserById(4L);
 
-        leaveApplicationService.setCurrentUser(applicant);
+        // Submitting application
+        userService.setCurrentUser(applicant);
         leaveApplicationService.submit();
 
-        leaveApplicationService.setCurrentUser(assistantController1);
+        // Sending back for changes to the applicant
+        userService.setCurrentUser(assistantController1);
         leaveApplicationService.sendBack("Documents and info are missing", true,
                 Arrays.asList(Map.of("Application body", "Please attach files")));
 
-        leaveApplicationService.setCurrentUser(applicant);
+        userService.setCurrentUser(applicant);
         leaveApplicationService.resubmit();
 
-        leaveApplicationService.setCurrentUser(assistantController2);
+        userService.setCurrentUser(assistantController2);
         leaveApplicationService.forward("Seems okay. Inspector suggested.");
 
-        leaveApplicationService.setCurrentUser(controller);
+        userService.setCurrentUser(controller);
         leaveApplicationService.sendBack("Not ready for inspection.", false, null);
 
-        leaveApplicationService.setCurrentUser(assistantController2);
+        userService.setCurrentUser(assistantController2);
         leaveApplicationService.sendBack("Information missing.", true, null);
 
-        leaveApplicationService.setCurrentUser(applicant);
+        userService.setCurrentUser(applicant);
         leaveApplicationService.resubmit();
 
-        leaveApplicationService.setCurrentUser(assistantController1);
+        userService.setCurrentUser(assistantController1);
         leaveApplicationService.forward("Seems fine");
 
-        leaveApplicationService.setCurrentUser(controller);
+        userService.setCurrentUser(controller);
         leaveApplicationService.forward("Inspector assigned. FW when inspection done.");
 
-        leaveApplicationService.setCurrentUser(assistantController1);
+        userService.setCurrentUser(assistantController1);
         leaveApplicationService.forward("Inspection report & payment fine.");
 
-        leaveApplicationService.setCurrentUser(controller);
+        userService.setCurrentUser(controller);
         leaveApplicationService.forward("Everything seems fine.");
 
-        leaveApplicationService.setCurrentUser(secretary);
+        userService.setCurrentUser(secretary);
         leaveApplicationService.approve("Approved");
     }
 
