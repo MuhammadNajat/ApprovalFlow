@@ -23,8 +23,8 @@ public class ApprovalHistory {
     private LocalDateTime assignedAt;
     private LocalDateTime reviewedAt;
     private String comment;
-    private List<Map<String, String>> correctableFields;        // only for correction
-    private List<Long> assignedUsers;                           // for reporting purpose only, TODO: should be string
+    private List<Map<String, String>> correctableFields;        // only for correction - Najat: How to mark it nullable
+    private String assignedUsers;                           // for reporting purpose only, TODO: should be string - done
 
     public void saveAssignment(Long id, Long applicationId, LocalDateTime assignedAt) {
         this.id = id;
@@ -32,7 +32,7 @@ public class ApprovalHistory {
         this.assignedAt = assignedAt;
     }
 
-    public void saveAction(Long userId, Long employeeId, Long officePostHistoryId, LocalDateTime reviewedAt, ApprovalActionType actionType, String comment, List<Map<String, String>> correctableFields, List<Long> assignedUsers) {
+    public void saveAction(Long userId, Long employeeId, Long officePostHistoryId, LocalDateTime reviewedAt, ApprovalActionType actionType, String comment, List<Map<String, String>> correctableFields, String assignedUsers) {
         this.userId = userId;
         this.employeeId = employeeId;
         this.officePostHistoryId = officePostHistoryId;

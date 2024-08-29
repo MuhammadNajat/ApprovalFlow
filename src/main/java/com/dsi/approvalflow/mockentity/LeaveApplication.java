@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class LeaveApplication extends Application<Integer> {
+public class LeaveApplication extends Application {
     private int employeeId;
     private LocalDate fromDate;
     private LocalDate tillDate;

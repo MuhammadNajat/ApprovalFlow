@@ -48,9 +48,37 @@ public class ApprovalStepService {
         step3.setApplicantRole(Role.APPLICANT);
         step3.setPathNo(0);
         step3.setStepNo(2);
-        step3.setReviewerRole(Role.SECRETARY);
+        step3.setReviewerRole(Role.ASSISTANT_CONTROLLER);
         step3.setStartOverOnResubmit(false);
         step3.setAllowedApprovalActions(Arrays.asList(
+                AllowedApprovalActions.SEND_BACK,
+                AllowedApprovalActions.REQUEST_CHANGES,
+                AllowedApprovalActions.FORWARD
+        ));
+
+        ApprovalStep step4 = new ApprovalStep();
+        step4.setId(4L);
+        step4.setApplicationType(ApplicationType.LEAVE_APPLICATION);
+        step4.setApplicantRole(Role.APPLICANT);
+        step4.setPathNo(0);
+        step4.setStepNo(3);
+        step4.setReviewerRole(Role.CONTROLLER);
+        step4.setStartOverOnResubmit(false);
+        step4.setAllowedApprovalActions(Arrays.asList(
+                AllowedApprovalActions.SEND_BACK,
+                AllowedApprovalActions.REQUEST_CHANGES,
+                AllowedApprovalActions.FORWARD
+        ));
+
+        ApprovalStep step5 = new ApprovalStep();
+        step5.setId(5L);
+        step5.setApplicationType(ApplicationType.LEAVE_APPLICATION);
+        step5.setApplicantRole(Role.APPLICANT);
+        step5.setPathNo(0);
+        step5.setStepNo(4);
+        step5.setReviewerRole(Role.SECRETARY);
+        step5.setStartOverOnResubmit(false);
+        step5.setAllowedApprovalActions(Arrays.asList(
                 AllowedApprovalActions.APPROVE,
                 AllowedApprovalActions.REJECT
         ));
@@ -58,18 +86,10 @@ public class ApprovalStepService {
         steps.add(step1);
         steps.add(step2);
         steps.add(step3);
+        steps.add(step4);
+        steps.add(step5);
 
         return steps;
-    }
-
-    public List<Role> getReviewerRoles(ApplicationType applicationType, String applicantRole, Integer path, Integer level) {
-        List<Role> roles = new ArrayList<>();
-        for(ApprovalStep approvalStep : getApprovalSteps(applicationType, Role.APPLICANT)) {
-            if(approvalStep.getPathNo() == path && approvalStep.getStepNo() == level) {
-                roles.add(approvalStep.getReviewerRole());
-            }
-        }
-        return roles;
     }
 
     public List<ApprovalStep> getNextStep(ApplicationType applicationType, Integer path, Integer level) {
@@ -89,15 +109,13 @@ public class ApprovalStepService {
     }
 
     public List<ApprovalStep> getInitialStep(ApplicationType applicationType, List<Role> roles) {
-        // TODO: confirm with omar will it throw exception or empty array
-
         List<ApprovalStep> steps = getApprovalSteps(applicationType, Role.APPLICANT);
         List<ApprovalStep> nextSteps = new ArrayList<>();
         nextSteps.add(steps.get(0));
         return nextSteps;
     }
 
-    public List<ApprovalStep> getPreviousSteps(ApplicationType applicationType, List<Role> roles, Integer path, Integer level) {
+    public List<ApprovalStep> getPreviousStep(ApplicationType applicationType, List<Role> roles, Integer path, Integer level) {
         if(path == null || level == null) {
             return null;
         }
@@ -112,7 +130,7 @@ public class ApprovalStepService {
         return prevSteps;
     }
 
-    public List<ApprovalStep> getCurrentSteps(ApplicationType applicationType, List<Role> roles, Integer path, Integer level) {
+    public List<ApprovalStep> getStepWithPathAndStepNo(ApplicationType applicationType, List<Role> roles, Integer path, Integer level) {
         if(path == null || level == null) {
             return null;
         }

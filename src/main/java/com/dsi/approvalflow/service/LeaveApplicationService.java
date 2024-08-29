@@ -1,6 +1,5 @@
 package com.dsi.approvalflow.service;
 
-import com.dsi.approvalflow.mockentity.ApplicationType;
 import com.dsi.approvalflow.mockentity.LeaveApplication;
 import lombok.Getter;
 

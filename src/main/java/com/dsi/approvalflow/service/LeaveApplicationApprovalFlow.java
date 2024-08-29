@@ -5,7 +5,7 @@ import com.dsi.approvalflow.mockentity.ApplicationType;
 import com.dsi.approvalflow.mockentity.Application;
 
 public class LeaveApplicationApprovalFlow extends BaseApprovalFlow {
-    public LeaveApplicationApprovalFlow(Application<?> application) {
+    public LeaveApplicationApprovalFlow(Application application) {
         super(application);
     }
 }
