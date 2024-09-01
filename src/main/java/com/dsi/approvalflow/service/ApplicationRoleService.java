@@ -69,4 +69,16 @@ public class ApplicationRoleService {
         }
         return applicationIds;
     }
+
+    public List<Long> getApplicationsForRoles(List<Role> roles) {
+        List<Long> applicationIds = new ArrayList<>();
+        for(Role role : roles) {
+            for (ApplicationRole applicationRole : applicationRoles) {
+                if (Role.valueOf(applicationRole.getRole()) == role) {
+                    applicationIds.add(applicationRole.getApplicationId());
+                }
+            }
+        }
+        return applicationIds;
+    }
 }

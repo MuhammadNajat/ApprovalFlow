@@ -8,13 +8,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/BaseApprovalFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/BaseApprovalFlow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/ApplicationRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/ApplicationRole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/ApprovalHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/ApprovalHistory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/LeaveApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/LeaveApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/mockentity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/service/ApplicationRoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/service/ApplicationRoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/service/ApprovalStepService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/service/ApprovalStepService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/service/LeaveApplicationApprovalFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/service/LeaveApplicationApprovalFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/service/LeaveApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/service/LeaveApplicationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/approvalflow/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,8 +46,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -143,7 +140,7 @@
       <workItem from="1724742188117" duration="868000" />
       <workItem from="1724746573655" duration="11889000" />
       <workItem from="1724822182474" duration="26197000" />
-      <workItem from="1724909417558" duration="12058000" />
+      <workItem from="1724909417558" duration="25434000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized project">
       <created>1723638042588</created>

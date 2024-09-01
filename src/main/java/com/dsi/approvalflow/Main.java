@@ -17,52 +17,60 @@ public class Main {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
         LeaveApplication application = createLeaveApplication();
         LeaveApplicationService leaveApplicationService = new LeaveApplicationService(application);
-
-        UserService userService = new UserService();
-
-        User applicant = userService.getUserById(2L);
-        User assistantController1 = userService.getUserById(1L);
-        User assistantController2 = userService.getUserById(5L);
-        User controller = userService.getUserById(3L);
-        User secretary = userService.getUserById(4L);
+        
+        User applicant = UserService.getUserById(2L);
+        User assistantController1 = UserService.getUserById(1L);
+        User assistantController2 = UserService.getUserById(5L);
+        User controller = UserService.getUserById(3L);
+        User secretary = UserService.getUserById(4L);
 
         // Submitting application
-        userService.setCurrentUser(applicant);
+        UserService.setCurrentUser(applicant);
         leaveApplicationService.submit();
 
         // Sending back for changes to the applicant
-        userService.setCurrentUser(assistantController1);
+        UserService.setCurrentUser(assistantController1);
         leaveApplicationService.sendBack("Documents and info are missing", true,
                 Arrays.asList(Map.of("Application body", "Please attach files")));
 
-        userService.setCurrentUser(applicant);
+        // Applicant resubmits the application
+        UserService.setCurrentUser(applicant);
         leaveApplicationService.resubmit();
 
-        userService.setCurrentUser(assistantController2);
+        // Asst Controller suggests Inspector & forwards
+        UserService.setCurrentUser(assistantController2);
         leaveApplicationService.forward("Seems okay. Inspector suggested.");
 
-        userService.setCurrentUser(controller);
+        // Controller founds that application isn't inspection-ready & sends back to Asst Controller
+        UserService.setCurrentUser(controller);
         leaveApplicationService.sendBack("Not ready for inspection.", false, null);
 
-        userService.setCurrentUser(assistantController2);
+        // Asst Controller comments what's missing & sends back to applicant
+        UserService.setCurrentUser(assistantController2);
         leaveApplicationService.sendBack("Information missing.", true, null);
 
-        userService.setCurrentUser(applicant);
+        // Applicant resubmits
+        UserService.setCurrentUser(applicant);
         leaveApplicationService.resubmit();
 
-        userService.setCurrentUser(assistantController1);
+        // Asst Controller forwards to Controller
+        UserService.setCurrentUser(assistantController1);
         leaveApplicationService.forward("Seems fine");
 
-        userService.setCurrentUser(controller);
+        // Controller assigns Inspector & forwards to Asst Controller
+        UserService.setCurrentUser(controller);
         leaveApplicationService.forward("Inspector assigned. FW when inspection done.");
 
-        userService.setCurrentUser(assistantController1);
+        // Asst Controller finds Inspection report & payment fine and forwards to Controller
+        UserService.setCurrentUser(assistantController1);
         leaveApplicationService.forward("Inspection report & payment fine.");
 
-        userService.setCurrentUser(controller);
+        // Controller finds everything fine and forwards to Secretary
+        UserService.setCurrentUser(controller);
         leaveApplicationService.forward("Everything seems fine.");
 
-        userService.setCurrentUser(secretary);
+        // Secretary approves
+        UserService.setCurrentUser(secretary);
         leaveApplicationService.approve("Approved");
     }
 

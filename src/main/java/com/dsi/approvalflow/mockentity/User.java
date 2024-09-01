@@ -12,4 +12,9 @@ import java.util.List;
 public class User {
     private Long id;
     private List<Role> roles;
+
+    public User(long id, List<Role> roles) {
+        this.id = id;
+        this.roles = roles;
+    }
 }

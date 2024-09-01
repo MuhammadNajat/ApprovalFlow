@@ -23,10 +23,10 @@ public class ApprovalHistory {
     private LocalDateTime assignedAt;
     private LocalDateTime reviewedAt;
     private String comment;
-    private List<Map<String, String>> correctableFields;        // only for correction - Najat: How to mark it nullable
-    private String assignedUsers;                           // for reporting purpose only, TODO: should be string - done
+    private List<Map<String, String>> correctableFields;        // only for correction - Najat: How to mark it nullable?
+    private String assignedEmployeeIds;
 
-    public void saveAssignment(Long id, Long applicationId, LocalDateTime assignedAt) {
+    public ApprovalHistory(Long id, Long applicationId, LocalDateTime assignedAt) {
         this.id = id;
         this.applicationId = applicationId;
         this.assignedAt = assignedAt;
@@ -40,6 +40,6 @@ public class ApprovalHistory {
         this.actionType = actionType;
         this.comment = comment;
         this.correctableFields = correctableFields;
-        this.assignedUsers = assignedUsers;
+        this.assignedEmployeeIds = assignedUsers;
     }
 }

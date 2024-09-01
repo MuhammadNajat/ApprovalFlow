@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//TODO: Remove unnecessary static keywords
 public class UserService {
-    List<User> users;
-    private User currentUser;
+    private static List<User> users;
+    private static User currentUser;
 
     public UserService() {
         users = Arrays.asList(
@@ -21,7 +22,7 @@ public class UserService {
         );
     }
 
-    public List<User> getUsersByRole(Role role) {
+    public static List<User> getUsersByRole(Role role) {
         List<User> filteredUsers = new ArrayList<>();
         for(User user : users) {
             if(user.getRoles().contains(role)) {
@@ -31,7 +32,7 @@ public class UserService {
         return filteredUsers;
     }
 
-    public User getUserById(Long id) {
+    public static User getUserById(Long id) {
         for(User user : users) {
             if(user.getId() == id) {
                 return user;
@@ -40,11 +41,11 @@ public class UserService {
         return null;
     }
 
-    public User getCurrentUser() {
+    public static User getCurrentUser() {
         return currentUser;
     }
 
-    public void setCurrentUser(User user) {
-        this.currentUser = user;
+    public static void setCurrentUser(User user) {
+        currentUser = user;
     }
 }
